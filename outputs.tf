@@ -17,3 +17,7 @@ output "arn" {
 output "name" {
   value = aws_ssm_parameter.parameter.name
 }
+
+output "version" {
+  value = aws_ssm_parameter.parameter.version
+}

@@ -13,6 +13,11 @@
 variable "parameter_name" {
   description = "Name of the parameter. If the name contains a path (any forward slashes), it must be fully qualified with a leading forward slash."
   type        = string
+
+  validation {
+    condition     = strcontains(var.parameter_name, "/") ? can(regex("^/.+", var.parameter_name)) : true
+    error_message = "If the name contains a path (any forward slashes), it must be fully qualified with a leading forward slash."
+  }
 }
 
 variable "type" {
@@ -21,7 +26,8 @@ variable "type" {
   default     = "String"
 
   validation {
-    condition     = can(regex("String|StringList|SecureString", var.type))
+    condition = contains(["String", "StringList", "SecureString"], var.type)
+
     error_message = "Valid types are String, StringList, and SecureString."
   }
 }
@@ -38,7 +44,12 @@ variable "value" {
 }
 
 variable "tier" {
-  description = "Parameter tier to assign. Valid tiers are Standard (default), Advanced, and Intelligent-Tiering. Downgrading an advanced tier to Standard will recreate the resource."
+  description = "Parameter tier to assign. Valid tiers are `Standard` (default), `Advanced`, and `Intelligent-Tiering`. Downgrading an `Advanced` tier to `Standard` will recreate the resource."
   type        = string
   default     = "Standard"
+
+  validation {
+    condition     = contains(["Standard", "Advanced", "Intelligent-Tiering"], var.tier)
+    error_message = "Valid tiers are Standard, Advanced, and Intelligent-Tiering."
+  }
 }

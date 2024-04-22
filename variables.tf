@@ -13,6 +13,11 @@
 variable "parameter_name" {
   description = "Name of the parameter. If the name contains a path (any forward slashes), it must be fully qualified with a leading forward slash."
   type        = string
+
+  validation {
+    condition     = strcontains(var.parameter_name, "/") ? can(regex("^/.+", var.parameter_name)) : true
+    error_message = "If the name contains a path (any forward slashes), it must be fully qualified with a leading forward slash."
+  }
 }
 
 variable "type" {
@@ -21,8 +26,26 @@ variable "type" {
   default     = "String"
 
   validation {
-    condition     = can(regex("String|StringList|SecureString", var.type))
+    condition = contains(["String", "StringList", "SecureString"], var.type)
+
     error_message = "Valid types are String, StringList, and SecureString."
+  }
+}
+
+variable "allowed_pattern" {
+  description = "Regular expression used to validate the parameter value."
+  type        = string
+  default     = null
+}
+
+variable "data_type" {
+  description = "Data type of the parameter. Valid values are `text` (default), `aws:ssm:integration` and `aws:ec2:image`. For AMI format, see Native parameter support for AMI IDs here: https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-ec2-aliases.html"
+  type        = string
+  default     = "text"
+
+  validation {
+    condition     = contains(["text", "aws:ssm:integration", "aws:ec2:image"], var.data_type)
+    error_message = "Valid data_types are text, aws:ssm:integration, and aws:ec2:image."
   }
 }
 
@@ -32,21 +55,27 @@ variable "description" {
   default     = null
 }
 
+variable "key_id" {
+  description = "KMS key ID or ARN for encrypting a `SecureString`."
+  type        = string
+  default     = null
+}
+
+
 variable "value" {
   description = "Value of the parameter."
   type        = string
 }
 
 variable "tier" {
-  description = "Parameter tier to assign. Valid tiers are Standard (default), Advanced, and Intelligent-Tiering. Downgrading an advanced tier to Standard will recreate the resource."
+  description = "Parameter tier to assign. Valid tiers are `Standard` (default), `Advanced`, and `Intelligent-Tiering`. Downgrading an `Advanced` tier to `Standard` will recreate the resource."
   type        = string
   default     = "Standard"
-}
 
-variable "key_id" {
-  description = "KMS Key ID or ARN for encrypting a SecureString"
-  type        = string
-  default     = null
+  validation {
+    condition     = contains(["Standard", "Advanced", "Intelligent-Tiering"], var.tier)
+    error_message = "Valid tiers are Standard, Advanced, and Intelligent-Tiering."
+  }
 }
 
 variable "tags" {

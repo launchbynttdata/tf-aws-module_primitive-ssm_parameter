@@ -17,3 +17,7 @@ output "parameter_arn" {
 output "parameter_name" {
   value = module.ssm_parameter.name
 }
+
+output "parameter_version" {
+  value = module.ssm_parameter.version
+}

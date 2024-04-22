@@ -11,9 +11,13 @@
 // limitations under the License.
 
 resource "aws_ssm_parameter" "parameter" {
-  name        = var.parameter_name
-  description = var.description
-  type        = var.type
-  value       = var.value
-  tags        = local.tags
+  name            = var.parameter_name
+  description     = var.description
+  type            = var.type
+  value           = var.value
+  allowed_pattern = var.allowed_pattern
+  data_type       = var.data_type
+  key_id          = var.key_id
+  tier            = var.tier
+  tags            = local.tags
 }

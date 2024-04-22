@@ -109,13 +109,13 @@ If `make check` target is successful, developer is good to commit the code to pr
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0, <= 1.5.5 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 3.57.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.14 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.22.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.46.0 |
 
 ## Modules
 
@@ -133,10 +133,12 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_parameter_name"></a> [parameter\_name](#input\_parameter\_name) | Name of the parameter. If the name contains a path (any forward slashes), it must be fully qualified with a leading forward slash. | `string` | n/a | yes |
 | <a name="input_type"></a> [type](#input\_type) | Type of the parameter. Valid types are String, StringList, and SecureString. | `string` | `"String"` | no |
+| <a name="input_allowed_pattern"></a> [allowed\_pattern](#input\_allowed\_pattern) | Regular expression used to validate the parameter value. | `string` | `null` | no |
+| <a name="input_data_type"></a> [data\_type](#input\_data\_type) | Data type of the parameter. Valid values are `text` (default), `aws:ssm:integration` and `aws:ec2:image`. For AMI format, see Native parameter support for AMI IDs here: https://docs.aws.amazon.com/systems-manager/latest/userguide/parameter-store-ec2-aliases.html | `string` | `"text"` | no |
 | <a name="input_description"></a> [description](#input\_description) | Description of the parameter | `string` | `null` | no |
+| <a name="input_key_id"></a> [key\_id](#input\_key\_id) | KMS key ID or ARN for encrypting a `SecureString`. | `string` | `null` | no |
 | <a name="input_value"></a> [value](#input\_value) | Value of the parameter. | `string` | n/a | yes |
-| <a name="input_tier"></a> [tier](#input\_tier) | Parameter tier to assign. Valid tiers are Standard (default), Advanced, and Intelligent-Tiering. Downgrading an advanced tier to Standard will recreate the resource. | `string` | `"Standard"` | no |
-| <a name="input_key_id"></a> [key\_id](#input\_key\_id) | KMS Key ID or ARN for encrypting a SecureString | `string` | `null` | no |
+| <a name="input_tier"></a> [tier](#input\_tier) | Parameter tier to assign. Valid tiers are `Standard` (default), `Advanced`, and `Intelligent-Tiering`. Downgrading an `Advanced` tier to `Standard` will recreate the resource. | `string` | `"Standard"` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | A map of tags to add to the resources created by the module. | `map(string)` | `{}` | no |
 
 ## Outputs
@@ -145,4 +147,5 @@ No modules.
 |------|-------------|
 | <a name="output_arn"></a> [arn](#output\_arn) | n/a |
 | <a name="output_name"></a> [name](#output\_name) | n/a |
+| <a name="output_version"></a> [version](#output\_version) | n/a |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
