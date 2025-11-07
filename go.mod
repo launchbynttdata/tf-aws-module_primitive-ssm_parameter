@@ -1,6 +1,6 @@
 module github.com/launchbynttdata/tf-aws-module_primitive-ssm_parameter
 
-go 1.21
+go 1.21.7
 
 require (
 	github.com/aws/aws-sdk-go-v2 v1.26.1

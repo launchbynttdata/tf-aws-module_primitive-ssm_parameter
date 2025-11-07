@@ -34,13 +34,13 @@ No resources.
 |------|-------------|
 | <a name="output_parameter_arn"></a> [parameter\_arn](#output\_parameter\_arn) | n/a |
 | <a name="output_parameter_name"></a> [parameter\_name](#output\_parameter\_name) | n/a |
-<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- BEGIN_TF_DOCS -->
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.5.0, <= 1.5.5 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.14 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.0 |
 
 ## Providers
 
@@ -73,4 +73,4 @@ No resources.
 | <a name="output_parameter_arn"></a> [parameter\_arn](#output\_parameter\_arn) | n/a |
 | <a name="output_parameter_name"></a> [parameter\_name](#output\_parameter\_name) | n/a |
 | <a name="output_parameter_version"></a> [parameter\_version](#output\_parameter\_version) | n/a |
-<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+<!-- END_TF_DOCS -->
