@@ -19,5 +19,6 @@ resource "aws_ssm_parameter" "parameter" {
   data_type       = var.data_type
   key_id          = var.key_id
   tier            = var.tier
+  overwrite       = var.overwrite
   tags            = local.tags
 }
