@@ -17,9 +17,9 @@ import (
 func TestComposableComplete(t *testing.T, ctx types.TestContext) {
 	ssmClient := GetAWSSSMClient(t)
 
-	ssmParameterArn := terraform.Output(t, ctx.TerratestTerraformOptions(), "parameter_arn")
-	ssmParameterName := terraform.Output(t, ctx.TerratestTerraformOptions(), "parameter_name")
-	ssmParameterVersion := terraform.Output(t, ctx.TerratestTerraformOptions(), "parameter_version")
+	ssmParameterArn := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "parameter_arn")
+	ssmParameterName := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "parameter_name")
+	ssmParameterVersion := terraform.OutputContext(t, context.Background(), ctx.TerratestTerraformOptions(), "parameter_version")
 
 	expectedParameterVersion, err := strconv.ParseInt(ssmParameterVersion, 10, 64)
 	if err != nil {
